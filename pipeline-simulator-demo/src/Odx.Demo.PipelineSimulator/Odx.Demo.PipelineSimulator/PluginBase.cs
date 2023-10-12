@@ -25,6 +25,8 @@ namespace Odx.Demo.PipelineSimulator
             PluginClassName = pluginClassName.ToString();
         }
 
+        public PluginBase() { }
+
         /// <summary>
         /// Main entry point for he business logic that the plug-in is to execute.
         /// </summary>

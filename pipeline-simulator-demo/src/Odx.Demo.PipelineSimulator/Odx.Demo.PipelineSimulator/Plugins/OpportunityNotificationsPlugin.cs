@@ -1,12 +1,13 @@
 using Microsoft.Xrm.Sdk;
 using Odx.Demo.Model;
-using System;
 using System.Linq;
 
 namespace Odx.Demo.PipelineSimulator.Plugins
 {
     public class OpportunityNotificationsPlugin : PluginBase
     {
+        public OpportunityNotificationsPlugin() : base() { }
+
         public OpportunityNotificationsPlugin(string unsecureConfiguration, string secureConfiguration)
             : base(typeof(OpportunityNotificationsPlugin))
         {

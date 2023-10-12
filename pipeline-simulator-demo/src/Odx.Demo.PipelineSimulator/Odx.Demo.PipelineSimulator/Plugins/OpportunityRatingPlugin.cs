@@ -8,6 +8,8 @@ namespace Odx.Demo.PipelineSimulator.Plugins
 {
     public class OpportunityRatingPlugin : PluginBase
     {
+        public OpportunityRatingPlugin() : base() { } 
+
         public OpportunityRatingPlugin(string unsecureConfiguration, string secureConfiguration)
             : base(typeof(OpportunityRatingPlugin))
         {       
@@ -32,8 +34,7 @@ namespace Odx.Demo.PipelineSimulator.Plugins
                                 .Where(x => x.Id == opportunity.CustomerId.Id)
                                 .FirstOrDefault();
 
-                            //For the purpose of this demo - let's assume € is base currency in our environment
-                            if (account?.Revenue_Base?.Value > 10000000) 
+                            if (account?.Revenue?.Value > 10000000) 
                             {
                                 opportunity.OpportunityRatingCode = opportunity_opportunityratingcode.Hot; 
                             }
