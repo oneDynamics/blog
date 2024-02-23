@@ -1,0 +1,15 @@
+{
+  "EnvironmentVariables": [],
+  "ConnectionReferences": [
+    {
+      "LogicalName": "odx_sharedcommondataserviceforapps_ab2bc",
+      "ConnectionId": "f8299f41c8564ee4b39e069f65787747",
+      "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+    },
+    {
+      "LogicalName": "odx_sharedoffice365_d1796",
+      "ConnectionId": "6b4ab137a47b431a96fb29e67dc040c3",
+      "ConnectorId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+trigger:
+  branches:
+    include:
+      - "*"
+
+name: "$(Build.SourceBranchName).$(Build.BuildId)"
+
+pool: 'oneDynamics Agents'
+
+steps:
+- checkout: self
+  clean: false
+  fetchDepth: 1
+  
+- task: PowerPlatformToolInstaller@2
+  inputs:
+    DefaultVersion: true
+
+- task: PowerPlatformImportSolution@2
+  inputs:
+    authenticationType: 'PowerPlatformSPN'
+    PowerPlatformSPN: 'OneDynamics Demo Environment'
+    SolutionInputFile: 'BlogPost_1_0_0_0_managed.zip'
+    UseDeploymentSettingsFile: true
+    DeploymentSettingsFile: 'deployment-settings.target.json'
+    AsyncOperation: true
+    MaxAsyncWaitTime: "60"
+    HoldingSolution: false
+    PublishCustomizationChanges: true
