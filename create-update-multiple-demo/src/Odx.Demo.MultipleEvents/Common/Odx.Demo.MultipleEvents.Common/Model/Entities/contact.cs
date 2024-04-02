@@ -611,7 +611,7 @@ namespace Odx.Demo.MultipleEvents.Common.Model
 			public const string mspp_userpreferredlcid = "mspp_userpreferredlcid";
 			public const string NickName = "nickname";
 			public const string NumberOfChildren = "numberofchildren";
-			public const string odx_Nextcontactdate = "odx_nextcontactdate";
+			public const string odx_nextcontactdate = "odx_nextcontactdate";
 			public const string OnHoldTime = "onholdtime";
 			public const string OverriddenCreatedOn = "overriddencreatedon";
 			public const string OwnerId = "ownerid";
@@ -655,8 +655,15 @@ namespace Odx.Demo.MultipleEvents.Common.Model
 			public const string YomiMiddleName = "yomimiddlename";
 			public const string Referencedcontact_customer_contacts = "Referencedcontact_customer_contacts";
 			public const string Referencedcontact_master_contact = "Referencedcontact_master_contact";
+			public const string Contact_Tasks = "Contact_Tasks";
 			public const string Referencingcontact_customer_contacts = "contact_customer_contacts";
 			public const string Referencingcontact_master_contact = "contact_master_contact";
+			public const string contact_owning_user = "contact_owning_user";
+			public const string lk_contact_createdonbehalfby = "lk_contact_createdonbehalfby";
+			public const string lk_contact_modifiedonbehalfby = "lk_contact_modifiedonbehalfby";
+			public const string lk_contactbase_createdby = "lk_contactbase_createdby";
+			public const string lk_contactbase_modifiedby = "lk_contactbase_modifiedby";
+			public const string system_user_contacts = "system_user_contacts";
 		}
 		
 		/// <summary>
@@ -3811,7 +3818,7 @@ namespace Odx.Demo.MultipleEvents.Common.Model
 		}
 		
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("odx_nextcontactdate")]
-		public System.Nullable<System.DateTime> odx_Nextcontactdate
+		public System.Nullable<System.DateTime> odx_nextcontactdate
 		{
 			get
 			{
@@ -3819,9 +3826,9 @@ namespace Odx.Demo.MultipleEvents.Common.Model
 			}
 			set
 			{
-				this.OnPropertyChanging("odx_Nextcontactdate");
+				this.OnPropertyChanging("odx_nextcontactdate");
 				this.SetAttributeValue("odx_nextcontactdate", value);
-				this.OnPropertyChanged("odx_Nextcontactdate");
+				this.OnPropertyChanged("odx_nextcontactdate");
 			}
 		}
 		
@@ -4546,6 +4553,24 @@ namespace Odx.Demo.MultipleEvents.Common.Model
 		}
 		
 		/// <summary>
+		/// 1:N Contact_Tasks
+		/// </summary>
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("Contact_Tasks")]
+		public System.Collections.Generic.IEnumerable<Odx.Demo.MultipleEvents.Common.Model.Task> Contact_Tasks
+		{
+			get
+			{
+				return this.GetRelatedEntities<Odx.Demo.MultipleEvents.Common.Model.Task>("Contact_Tasks", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("Contact_Tasks");
+				this.SetRelatedEntities<Odx.Demo.MultipleEvents.Common.Model.Task>("Contact_Tasks", null, value);
+				this.OnPropertyChanged("Contact_Tasks");
+			}
+		}
+		
+		/// <summary>
 		/// N:1 contact_customer_contacts
 		/// </summary>
 		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("parentcustomerid")]
@@ -4574,6 +4599,90 @@ namespace Odx.Demo.MultipleEvents.Common.Model
 			get
 			{
 				return this.GetRelatedEntity<Odx.Demo.MultipleEvents.Common.Model.Contact>("contact_master_contact", Microsoft.Xrm.Sdk.EntityRole.Referencing);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 contact_owning_user
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("owninguser")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("contact_owning_user")]
+		public Odx.Demo.MultipleEvents.Common.Model.SystemUser contact_owning_user
+		{
+			get
+			{
+				return this.GetRelatedEntity<Odx.Demo.MultipleEvents.Common.Model.SystemUser>("contact_owning_user", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_contact_createdonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_contact_createdonbehalfby")]
+		public Odx.Demo.MultipleEvents.Common.Model.SystemUser lk_contact_createdonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Odx.Demo.MultipleEvents.Common.Model.SystemUser>("lk_contact_createdonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_contact_modifiedonbehalfby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedonbehalfby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_contact_modifiedonbehalfby")]
+		public Odx.Demo.MultipleEvents.Common.Model.SystemUser lk_contact_modifiedonbehalfby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Odx.Demo.MultipleEvents.Common.Model.SystemUser>("lk_contact_modifiedonbehalfby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_contactbase_createdby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("createdby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_contactbase_createdby")]
+		public Odx.Demo.MultipleEvents.Common.Model.SystemUser lk_contactbase_createdby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Odx.Demo.MultipleEvents.Common.Model.SystemUser>("lk_contactbase_createdby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 lk_contactbase_modifiedby
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("modifiedby")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("lk_contactbase_modifiedby")]
+		public Odx.Demo.MultipleEvents.Common.Model.SystemUser lk_contactbase_modifiedby
+		{
+			get
+			{
+				return this.GetRelatedEntity<Odx.Demo.MultipleEvents.Common.Model.SystemUser>("lk_contactbase_modifiedby", null);
+			}
+		}
+		
+		/// <summary>
+		/// N:1 system_user_contacts
+		/// </summary>
+		[Microsoft.Xrm.Sdk.AttributeLogicalNameAttribute("preferredsystemuserid")]
+		[Microsoft.Xrm.Sdk.RelationshipSchemaNameAttribute("system_user_contacts")]
+		public Odx.Demo.MultipleEvents.Common.Model.SystemUser system_user_contacts
+		{
+			get
+			{
+				return this.GetRelatedEntity<Odx.Demo.MultipleEvents.Common.Model.SystemUser>("system_user_contacts", null);
+			}
+			set
+			{
+				this.OnPropertyChanging("system_user_contacts");
+				this.SetRelatedEntity<Odx.Demo.MultipleEvents.Common.Model.SystemUser>("system_user_contacts", null, value);
+				this.OnPropertyChanged("system_user_contacts");
 			}
 		}
 	}

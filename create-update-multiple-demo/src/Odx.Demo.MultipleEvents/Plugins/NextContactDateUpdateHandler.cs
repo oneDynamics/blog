@@ -1,19 +1,14 @@
 using Microsoft.Xrm.Sdk;
+using Odx.Demo.MultipleEvents.Common.Model;
 using System;
 
 namespace Odx.Demo.MultipleEvents.Plugins
 {
-    /// <summary>
-    /// Plugin development guide: https://docs.microsoft.com/powerapps/developer/common-data-service/plug-ins
-    /// Best practices and guidance: https://docs.microsoft.com/powerapps/developer/common-data-service/best-practices/business-logic/
-    /// </summary>
     public class NextContactDateUpdateHandler : PluginBase
     {
         public NextContactDateUpdateHandler(string unsecureConfiguration, string secureConfiguration)
             : base(typeof(NextContactDateUpdateHandler))
         {
-            // TODO: Implement your custom configuration handling
-            // https://docs.microsoft.com/powerapps/developer/common-data-service/register-plug-in#set-configuration-data
         }
 
         // Entry point for custom business logic execution
@@ -26,19 +21,29 @@ namespace Odx.Demo.MultipleEvents.Plugins
 
             var context = localPluginContext.PluginExecutionContext;
 
-            // TODO: Implement your custom business logic
+            if (context.InputParameters.Contains("Target") && context.InputParameters["Target"] is Entity)
+            {
+                var entity = (Entity)context.InputParameters["Target"];
 
-            // Check for the entity on which the plugin would be registered
-            //if (context.InputParameters.Contains("Target") && context.InputParameters["Target"] is Entity)
-            //{
-            //    var entity = (Entity)context.InputParameters["Target"];
+                // Check for entity name on which this plugin would be registered
+                if (entity.LogicalName == Contact.EntityLogicalName)
+                {
+                    var contact = entity.ToEntity<Contact>();
+                    if(contact.odx_nextcontactdate.HasValue)
+                    {
+                        var contactPreImage = ((Entity)context.PreEntityImages["PreImage"]).ToEntity<Contact>();
+                        localPluginContext.InitiatingUserService.Create(new Task
+                        {
+                            Subject = "Follow up",
+                            Description = "Follow up with the customer",
+                            ActualStart = contact.odx_nextcontactdate.Value, 
+                            OwnerId = contactPreImage?.OwnerId 
+                                ?? new EntityReference(SystemUser.EntityLogicalName, context.InitiatingUserId)
+                        }); 
+                    }
 
-            //    // Check for entity name on which this plugin would be registered
-            //    if (entity.LogicalName == "account")
-            //    {
-
-            //    }
-            //}
+                }
+            }
         }
     }
 }

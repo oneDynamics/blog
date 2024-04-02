@@ -11,6 +11,8 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Model\DataverseContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Entities\contact.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Entities\systemuser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Entities\task.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\EntityOptionSetEnum.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\activityfileattachment_objectcode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\activitypointer_activitytypecode.cs" />

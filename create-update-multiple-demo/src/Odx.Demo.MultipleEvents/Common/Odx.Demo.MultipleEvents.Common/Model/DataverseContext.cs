@@ -40,6 +40,28 @@ namespace Odx.Demo.MultipleEvents.Common.Model
 				return this.CreateQuery<Odx.Demo.MultipleEvents.Common.Model.Contact>();
 			}
 		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="Odx.Demo.MultipleEvents.Common.Model.SystemUser"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Odx.Demo.MultipleEvents.Common.Model.SystemUser> SystemUserSet
+		{
+			get
+			{
+				return this.CreateQuery<Odx.Demo.MultipleEvents.Common.Model.SystemUser>();
+			}
+		}
+		
+		/// <summary>
+		/// Gets a binding to the set of all <see cref="Odx.Demo.MultipleEvents.Common.Model.Task"/> entities.
+		/// </summary>
+		public System.Linq.IQueryable<Odx.Demo.MultipleEvents.Common.Model.Task> TaskSet
+		{
+			get
+			{
+				return this.CreateQuery<Odx.Demo.MultipleEvents.Common.Model.Task>();
+			}
+		}
 	}
 }
 #pragma warning restore CS1591
