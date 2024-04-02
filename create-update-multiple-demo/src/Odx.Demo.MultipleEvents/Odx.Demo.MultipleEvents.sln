@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{8F20744A-C07
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Odx.Demo.MultipleEvents.App", "App\Odx.Demo.MultipleEvents.App\Odx.Demo.MultipleEvents.App.csproj", "{03476BBD-B9A4-4B5E-B162-4AECDCF399D4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{C27D8B8C-F596-4363-93F5-9A33BC444E48}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Odx.Demo.MultipleEvents.Common", "Common\Odx.Demo.MultipleEvents.Common\Odx.Demo.MultipleEvents.Common.shproj", "{74EEF500-ED2E-4A51-A48F-09EA6D526817}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,8 +36,13 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{CBEABCBB-A87F-4ECD-8B40-89CF2DA0CC62} = {27A2FEF0-A553-4EEC-B880-F60426EB10F1}
 		{03476BBD-B9A4-4B5E-B162-4AECDCF399D4} = {8F20744A-C075-40F1-B012-F2744EA39272}
+		{74EEF500-ED2E-4A51-A48F-09EA6D526817} = {C27D8B8C-F596-4363-93F5-9A33BC444E48}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A8EB8496-CDAE-49E1-BEA8-79F7C9DFABAB}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Common\Odx.Demo.MultipleEvents.Common\Odx.Demo.MultipleEvents.Common.projitems*{74eef500-ed2e-4a51-a48f-09ea6d526817}*SharedItemsImports = 13
+		Common\Odx.Demo.MultipleEvents.Common\Odx.Demo.MultipleEvents.Common.projitems*{cbeabcbb-a87f-4ecd-8b40-89cf2da0cc62}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
