@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Odx.Demo.MultipleEvents.Plugins
 {
-    internal class MultipleNextContactDatesUpdateHandler : PluginBase
+    internal class MultipleNextContactDatesHandler : PluginBase
     {
-        public MultipleNextContactDatesUpdateHandler(Type pluginClassName) : base(pluginClassName)
+        public MultipleNextContactDatesHandler(Type pluginClassName) : base(pluginClassName)
         {
         }
     }

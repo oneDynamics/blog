@@ -4,10 +4,10 @@ using System;
 
 namespace Odx.Demo.MultipleEvents.Plugins
 {
-    public class NextContactDateUpdateHandler : PluginBase
+    public class NextContactDateHandler : PluginBase
     {
-        public NextContactDateUpdateHandler(string unsecureConfiguration, string secureConfiguration)
-            : base(typeof(NextContactDateUpdateHandler))
+        public NextContactDateHandler(string unsecureConfiguration, string secureConfiguration)
+            : base(typeof(NextContactDateHandler))
         {
         }
 
