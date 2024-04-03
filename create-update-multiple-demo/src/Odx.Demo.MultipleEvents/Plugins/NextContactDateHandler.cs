@@ -31,14 +31,12 @@ namespace Odx.Demo.MultipleEvents.Plugins
                     var contact = entity.ToEntity<Contact>();
                     if(contact.odx_nextcontactdate.HasValue)
                     {
-                        var contactPreImage = ((Entity)context.PreEntityImages["PreImage"]).ToEntity<Contact>();
                         localPluginContext.InitiatingUserService.Create(new Task
                         {
                             Subject = "Follow up",
                             Description = "Follow up with the customer",
                             ActualStart = contact.odx_nextcontactdate.Value, 
-                            OwnerId = contactPreImage?.OwnerId 
-                                ?? new EntityReference(SystemUser.EntityLogicalName, context.InitiatingUserId)
+                            RegardingObjectId = new EntityReference(Contact.EntityLogicalName, contact.Id)
                         }); 
                     }
 
