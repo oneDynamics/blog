@@ -3,8 +3,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.PowerPlatform.Dataverse.Client;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
+using Microsoft.Xrm.Sdk.Query;
+using Odx.Demo.MultipleEvents.App;
 using Odx.Demo.MultipleEvents.Common.Model;
-using System;
+using System.Diagnostics;
 
 public class App
 {
@@ -30,17 +32,46 @@ public class App
             {
                 if (operationType == "create")
                 {
+                    Stopwatch stopwatch = new Stopwatch();
                     var request = new CreateMultipleRequest(); 
                     request.Targets = new EntityCollection();
-                    for(int i = 0; i < operationCount; i++)
+                    request.Targets.EntityName = Contact.EntityLogicalName;
+                    for (int i = 0; i < operationCount; i++)
                     {
-                        request.Targets.Entities.Add(GetRandomContact()); 
+                        request.Targets.Entities.Add((Entity)RandomContactGenerator.Get()); 
                     }
+                    stopwatch.Start();
+                    serviceClient.Execute(request);
+                    stopwatch.Stop();
+                    Console.WriteLine($"Time elapsed in seconds: {stopwatch.Elapsed.Seconds}");
+
 
                 }
                 else if (operationType == "update")
                 {
-                    //TODO: Implement update operation
+                    Stopwatch stopwatch = new Stopwatch();
+                    var response = (RetrieveMultipleResponse)serviceClient.Execute(new RetrieveMultipleRequest()
+                    {
+                        Query = new QueryExpression(Contact.EntityLogicalName)
+                        {
+                            ColumnSet = new ColumnSet(Contact.Fields.ContactId), 
+                            TopCount = operationCount
+                        }
+                    });
+
+                    var request = new UpdateMultipleRequest();
+                    request.Targets = new EntityCollection(); 
+                    request.Targets.EntityName = Contact.EntityLogicalName;
+                    foreach (var entity in response.EntityCollection.Entities)
+                    {
+                        var contact = RandomContactGenerator.Get(); 
+                        contact.Id = entity.Id;
+                        request.Targets.Entities.Add(contact);
+                    }
+                    stopwatch.Start();
+                    serviceClient.Execute(request);
+                    stopwatch.Stop();
+                    Console.WriteLine($"Time elapsed in seconds: {stopwatch.Elapsed.Seconds}");
                 }
             }
         }
@@ -49,23 +80,6 @@ public class App
 
     }
 
-    private static Contact GetRandomContact()
-    {
-        var person = new Person();
 
-        return new Contact
-        {
-            FirstName = person.FirstName,
-            LastName = person.LastName,
-            odx_nextcontactdate = GetRandomDate()
-        }; 
-    }
-    private static DateTime GetRandomDate()
-    {
-        Random rand = new Random();
-        DateTime baseDate = new DateTime(2000, 1, 1);
-        int range = (DateTime.Today - baseDate).Days;
-        return baseDate.AddDays(rand.Next(range));
-    }
 
 }
