@@ -29,7 +29,7 @@ namespace Odx.Demo.MultipleEvents.Plugins
                 if (entity.LogicalName == Contact.EntityLogicalName)
                 {
                     var contact = entity.ToEntity<Contact>();
-                    if(contact.odx_nextcontactdate.HasValue)
+                    if (contact.odx_nextcontactdate.HasValue)
                     {
                         localPluginContext.InitiatingUserService.Create(new Task
                         {

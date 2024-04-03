@@ -23,11 +23,13 @@ namespace Odx.Demo.MultipleEvents.Plugins
             if (context.InputParameters.Contains("Targets") && context.InputParameters["Targets"] is EntityCollection entityCollection)
             {
                 // Verify expected entity images from step registration
-                foreach (Entity entity in entityCollection.Entities)
+                for (var i = 0; i < entityCollection.Entities.Count; i++)
                 {
+                    var entity = entityCollection.Entities[i];  
                     if (entity.LogicalName == Contact.EntityLogicalName)
                     {
                         var contact = entity.ToEntity<Contact>();
+
                         if (contact.odx_nextcontactdate.HasValue)
                         {
                             localPluginContext.InitiatingUserService.Create(new Task
