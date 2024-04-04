@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using Odx.Demo.MultipleEvents.Common.Model;
 
-namespace Odx.Demo.MultipleEvents.App
+namespace Odx.Demo.MultipleEvents.App.Internal
 {
     internal static class RandomContactGenerator
     {

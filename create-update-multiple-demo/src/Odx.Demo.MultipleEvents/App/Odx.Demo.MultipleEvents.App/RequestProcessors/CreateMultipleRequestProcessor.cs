@@ -1,6 +1,7 @@
 ﻿using Microsoft.PowerPlatform.Dataverse.Client;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
+using Odx.Demo.MultipleEvents.App.Internal;
 using Odx.Demo.MultipleEvents.Common.Model;
 using System.Diagnostics;
 

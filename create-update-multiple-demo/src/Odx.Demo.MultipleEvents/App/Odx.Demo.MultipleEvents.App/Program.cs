@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.PowerPlatform.Dataverse.Client;
+using Odx.Demo.MultipleEvents.App.Internal;
 using Odx.Demo.MultipleEvents.App.RequestProcessors;
 
 public class App
@@ -7,51 +8,44 @@ public class App
     public static void Main(string[] args) {
         Console.WriteLine($"Application started");
 
-        var builder = new ConfigurationBuilder()
+        var configurationRoot = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .Build();
 
-        IConfigurationRoot configuration = builder.Build();
+        var config = new Config(configurationRoot);
 
-        var operationCount = Int32.Parse(configuration["AppSettings:OperationCount"]);
-        var operationType = configuration["AppSettings:OperationType"];
-        var url = configuration["AppSettings:Url"];
-        var appId = configuration["AppSettings:AppId"];
-        var appSecret = configuration["AppSettings:AppSecret"];
-        var individualRequests = Boolean.Parse(configuration["AppSettings:IndividualRequests"]);
-
-        // Connection string to your Dataverse environment.
-        string connectionString = $"AuthType=ClientSecret;Url={url};ClientId={appId};ClientSecret={appSecret}";
+        string connectionString = $"AuthType=ClientSecret;Url={config.Url};ClientId={config.AppId};ClientSecret={config.AppSecret}";
 
         using (var serviceClient = new ServiceClient(connectionString ))
         {
-            if (serviceClient.IsReady && !individualRequests)
+            if (serviceClient.IsReady && !config.IndividualRequests)
             {
-                if (operationType == "create")
+                if (config.OperationType == "create")
                 {
                     Console.WriteLine("operationType == create (!I)");
-                    var totalSeconds = new CreateMultipleRequestProcessor(serviceClient, operationCount).MeasureRequestTime();
+                    var totalSeconds = new CreateMultipleRequestProcessor(serviceClient, config.OperationCount).MeasureRequestTime();
                     Console.WriteLine($"Time elapsed in seconds: {totalSeconds}"); 
                 }
-                else if (operationType == "update")
+                else if (config.OperationType == "update")
                 {
                     Console.WriteLine("operationType == update  (!I)");
-                    var totalSeconds = new UpdateMultipleRequestProcessor(serviceClient, operationCount).MeasureRequestTime();
+                    var totalSeconds = new UpdateMultipleRequestProcessor(serviceClient, config.OperationCount).MeasureRequestTime();
                     Console.WriteLine($"Time elapsed in seconds: {totalSeconds}");
                 }
             }
-            else if(serviceClient.IsReady && individualRequests)
+            else if(serviceClient.IsReady && config.IndividualRequests)
             {
-                if (operationType == "create")
+                if (config.OperationType == "create")
                 {
                     Console.WriteLine("operationType == create (I)");
-                    var totalSeconds = new CreateRequestProcessor(serviceClient, operationCount).MeasureRequestTime();
+                    var totalSeconds = new CreateRequestProcessor(serviceClient, config.OperationCount).MeasureRequestTime();
                     Console.WriteLine($"Time elapsed in seconds: {totalSeconds}");
                 }
-                else if (operationType == "update")
+                else if (config.OperationType == "update")
                 {
                     Console.WriteLine("operationType == update (I)");
-                    var totalSeconds = new UpdateRequestProcessor(serviceClient, operationCount).MeasureRequestTime();
+                    var totalSeconds = new UpdateRequestProcessor(serviceClient, config.OperationCount).MeasureRequestTime();
                     Console.WriteLine($"Time elapsed in seconds: {totalSeconds}");
                 }
             }       
