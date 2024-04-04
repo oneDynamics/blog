@@ -3,7 +3,7 @@ using Microsoft.PowerPlatform.Dataverse.Client;
 using Odx.Demo.MultipleEvents.App.Internal;
 using Odx.Demo.MultipleEvents.App.RequestProcessors;
 
-public class App
+public class Program
 {
     public static void Main(string[] args) {
         Console.WriteLine($"Application started");
@@ -23,13 +23,13 @@ public class App
             {
                 if (config.OperationType == "create")
                 {
-                    Console.WriteLine("operationType == create (!I)");
+                    Console.WriteLine("OperationType == create (!I)");
                     var totalSeconds = new CreateMultipleRequestProcessor(serviceClient, config.OperationCount).MeasureRequestTime();
                     Console.WriteLine($"Time elapsed in seconds: {totalSeconds}"); 
                 }
                 else if (config.OperationType == "update")
                 {
-                    Console.WriteLine("operationType == update  (!I)");
+                    Console.WriteLine("OperationType == update  (!I)");
                     var totalSeconds = new UpdateMultipleRequestProcessor(serviceClient, config.OperationCount).MeasureRequestTime();
                     Console.WriteLine($"Time elapsed in seconds: {totalSeconds}");
                 }
@@ -38,13 +38,13 @@ public class App
             {
                 if (config.OperationType == "create")
                 {
-                    Console.WriteLine("operationType == create (I)");
+                    Console.WriteLine("OperationType == create (I)");
                     var totalSeconds = new CreateRequestProcessor(serviceClient, config.OperationCount).MeasureRequestTime();
                     Console.WriteLine($"Time elapsed in seconds: {totalSeconds}");
                 }
                 else if (config.OperationType == "update")
                 {
-                    Console.WriteLine("operationType == update (I)");
+                    Console.WriteLine("OperationType == update (I)");
                     var totalSeconds = new UpdateRequestProcessor(serviceClient, config.OperationCount).MeasureRequestTime();
                     Console.WriteLine($"Time elapsed in seconds: {totalSeconds}");
                 }
