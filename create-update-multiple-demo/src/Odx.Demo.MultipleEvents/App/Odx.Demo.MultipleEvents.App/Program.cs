@@ -1,11 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.PowerPlatform.Dataverse.Client;
-using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Messages;
-using Microsoft.Xrm.Sdk.Query;
-using Odx.Demo.MultipleEvents.App;
-using Odx.Demo.MultipleEvents.Common.Model;
-using System.Diagnostics;
+using Odx.Demo.MultipleEvents.App.RequestProcessors;
 
 public class App
 {
@@ -35,54 +30,14 @@ public class App
                 if (operationType == "create")
                 {
                     Console.WriteLine("operationType == create (!I)");
-                    Stopwatch stopwatch = new Stopwatch();
-                    var request = new CreateMultipleRequest(); 
-                    request.Targets = new EntityCollection();
-                    request.Targets.EntityName = Contact.EntityLogicalName;
-                    for (int i = 0; i < operationCount; i++)
-                    {
-                        request.Targets.Entities.Add((Entity)RandomContactGenerator.Get()); 
-                    }
-                    stopwatch.Start();
-                    Console.WriteLine($"Request execution started");
-                    serviceClient.Execute(request);
-                    stopwatch.Stop();
-                    Console.WriteLine($"Time elapsed in seconds: {stopwatch.Elapsed.TotalSeconds}");
-
-
+                    var totalSeconds = new CreateMultipleRequestProcessor(serviceClient, operationCount).MeasureRequestTime();
+                    Console.WriteLine($"Time elapsed in seconds: {totalSeconds}"); 
                 }
                 else if (operationType == "update")
                 {
                     Console.WriteLine("operationType == update  (!I)");
-                    Stopwatch stopwatch = new Stopwatch();
-                    var response = (RetrieveMultipleResponse)serviceClient.Execute(new RetrieveMultipleRequest()
-                    {
-                        Query = new QueryExpression(Contact.EntityLogicalName)
-                        {
-                            ColumnSet = new ColumnSet(Contact.Fields.ContactId), 
-                            TopCount = operationCount
-                        }
-                    });
-
-                    if(response.EntityCollection.Entities.Count == 0)
-                    {
-                        Console.WriteLine("No records found to update");
-                        return;
-                    }
-                    var request = new UpdateMultipleRequest();
-                    request.Targets = new EntityCollection(); 
-                    request.Targets.EntityName = Contact.EntityLogicalName;
-                    foreach (var entity in response.EntityCollection.Entities)
-                    {
-                        var contact = RandomContactGenerator.Get(); 
-                        contact.Id = entity.Id;
-                        request.Targets.Entities.Add(contact);
-                    }
-                    stopwatch.Start();
-                    Console.WriteLine($"Request execution started");
-                    serviceClient.Execute(request);
-                    stopwatch.Stop();
-                    Console.WriteLine($"Time elapsed in seconds: {stopwatch.Elapsed.TotalSeconds}");
+                    var totalSeconds = new UpdateMultipleRequestProcessor(serviceClient, operationCount).MeasureRequestTime();
+                    Console.WriteLine($"Time elapsed in seconds: {totalSeconds}");
                 }
             }
             else if(serviceClient.IsReady && individualRequests)
@@ -90,49 +45,14 @@ public class App
                 if (operationType == "create")
                 {
                     Console.WriteLine("operationType == create (I)");
-                    Stopwatch stopwatch = new Stopwatch();
-                    stopwatch.Start();
-                    for (int i = 0; i < operationCount; i++)
-                    {
-                        var request = new CreateRequest();
-                        request.Target = RandomContactGenerator.Get(); 
-                        serviceClient.Execute(request);
- 
-                    }
-                    stopwatch.Stop();
-                    Console.WriteLine($"Time elapsed in seconds: {stopwatch.Elapsed.TotalSeconds}");
+                    var totalSeconds = new CreateRequestProcessor(serviceClient, operationCount).MeasureRequestTime();
+                    Console.WriteLine($"Time elapsed in seconds: {totalSeconds}");
                 }
                 else if (operationType == "update")
                 {
                     Console.WriteLine("operationType == update (I)");
-
-                    var response = (RetrieveMultipleResponse)serviceClient.Execute(
-                        new RetrieveMultipleRequest()
-                        {
-                            Query = new QueryExpression(Contact.EntityLogicalName)
-                            {
-                                ColumnSet = new ColumnSet(Contact.Fields.ContactId),
-                                TopCount = operationCount
-                            }
-                        });
-
-                    if (response.EntityCollection.Entities.Count == 0)
-                    {
-                        Console.WriteLine("No records found to update");
-                        return;
-                    }
-                    Stopwatch stopwatch = new Stopwatch();
-                    stopwatch.Start();
-                    foreach (var entity in response.EntityCollection.Entities)
-                    {
-                        var request = new UpdateRequest();
-                        var contact = RandomContactGenerator.Get();
-                        contact.Id = entity.Id;
-                        request.Target = contact;
-                        serviceClient.Execute(request);
-                    }
-                    stopwatch.Stop();
-                    Console.WriteLine($"Time elapsed in seconds: {stopwatch.Elapsed.TotalSeconds}");
+                    var totalSeconds = new UpdateRequestProcessor(serviceClient, operationCount).MeasureRequestTime();
+                    Console.WriteLine($"Time elapsed in seconds: {totalSeconds}");
                 }
             }       
         }
