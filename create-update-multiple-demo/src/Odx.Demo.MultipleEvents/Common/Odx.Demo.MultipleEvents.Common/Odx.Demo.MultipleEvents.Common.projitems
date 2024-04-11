@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>74eef500-ed2e-4a51-a48f-09ea6d526817</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Odx.Demo.MultipleEvents.Common</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Model\DataverseContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Entities\contact.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Entities\systemuser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Entities\task.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\EntityOptionSetEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\activityfileattachment_objectcode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\activitypointer_activitytypecode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\activitypointer_deliveryprioritycode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\aioperationoverridetype.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\aiplugintype.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\applicationbasedaccesslist_cloud.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\botcomponentreusepolicy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\botsharingroletypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\bulkemail_recipient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\bulkemail_recipients.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\capability.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\chatbotlanguage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\componentstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\componenttype.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\connectionrole_category.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\connectortype.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\convertrule_channelactivity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\customapifieldtype.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\delete_recurringappointmentmaster.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\dependencytype.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\emailserverprofile_authenticationprotocol.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\field_security_permission_readunmasked.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\field_security_permission_type.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\flipswitch_options.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\fullsyncstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\goal_fiscalperiod.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\goal_fiscalyear.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\isinherited.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\knowledgearticle_expirationstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\mainfewshotentitytype.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\makerfewshotsqlcorrectness.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\metric_goaltype.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\mobileofflineenabledentities.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\msdynce_contentstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\msdyn_dataflowtemplatestate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\msdyn_numberofsearchresults.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\mspp_columnpermissionvalues.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\officedocument_documenttype.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\onlinemeetingtype.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\openaischemaversion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\organization_applicationbasedaccesscontrolmode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\orginsightsconfiguration_lookback.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\orginsightsconfiguration_plotoption.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\photo_resolution.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\powerbimashupparametervaluesource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\powerpagecomponenttype.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\powerpagelanguages.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\principalsyncattributemapping_syncdirection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\processstage_category.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\rangeends_options.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\recurrencerule_monthofyear.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\registrationstatustype.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\repeatpattern_options.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\rundesktopflowconnectiontype.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\sameweekday_options.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\sameweekweek_options.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\searchentity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\sharepointdocumentlocation_locationtype.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\sharepointsite_servicetype.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\sharepoint_validationstatus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\sharepoint_validationstatusreason.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\socialactivity_postmessagetype.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\socialprofile_community.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\synapselinkdestinationsyncstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\synapselinkentitymetadatastate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\synapselinkentitypartitionstrategy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\synapselinkentitysource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\synapselinkentitysyncstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\synapselinkexternaltablestate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\synapselinkprofileentitytype.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\synapselinkprofilestate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\synapselinkprofiletype.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\synapselinkschedulerecurrenceunit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\synapselinkscheduletype.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\synapselinksynapsetablecreationstate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\syncattributemapping_syncdirection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\syncstatus.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\workflowlog_objecttypecode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\workflow_runas.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\workflow_stage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OptionSets\yearlymonth_options.cs" />
+  </ItemGroup>
+</Project>
